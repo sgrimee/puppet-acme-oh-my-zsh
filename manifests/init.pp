@@ -37,12 +37,7 @@ class ohmyzsh(
   $home = $ohmyzsh::params::home
 ) inherits ohmyzsh::params {
 
-
-  if(!defined(Package['git'])) {
-    package { 'git':
-      ensure => present,
-    }
-  }
+  include git
 
   if(!defined(Package['zsh'])) {
     package { 'zsh':
