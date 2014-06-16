@@ -27,6 +27,8 @@
 #
 define ohmyzsh::install() {
 
+  include curl
+
   if $name == 'root' { $home = '/root' } else { $home = "${ohmyzsh::params::home}/${name}" }
 
   exec { "ohmyzsh::git clone ${name}":
