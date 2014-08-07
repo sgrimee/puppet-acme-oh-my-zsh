@@ -34,7 +34,8 @@
 #
 class ohmyzsh(
   $zsh = $ohmyzsh::params::zsh,
-  $home = $ohmyzsh::params::home
+  $home = $ohmyzsh::params::home,
+  $update_repo = $ohmyzsh::params::update_repo,
 ) inherits ohmyzsh::params {
 
   include git

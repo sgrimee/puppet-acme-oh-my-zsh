@@ -41,6 +41,17 @@ define ohmyzsh::install() {
     require => [Package['git'], Package['zsh'], Package['curl']]
   }
 
+  if $ohmyzsh::update_repo {
+    exec { "ohmyzsh::git pull for ${name}":
+      path    => '/bin:/usr/bin',
+      cwd     => "/home/$name/.oh-my-zsh",
+      command => "git pull",
+      #returns => [ 0, 128],
+      user    => $name,
+      require => [Package['git'], Package['zsh'], Package['curl']]
+    }
+  }
+
   exec { "ohmyzsh::cp .zshrc ${name}":
     creates => "${home}/.zshrc",
     command => "/bin/cp ${home}/.oh-my-zsh/templates/zshrc.zsh-template ${home}/.zshrc",
